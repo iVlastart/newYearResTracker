@@ -20,7 +20,12 @@ export default function App(){
         data.map((resolution)=>(
           <div key={resolution.id} className="border m-4 p-4 rounded shadow flex flex-col justify-center items-center gap-y-3">
             <div className="text-xl font-semibold">{resolution.name}</div>
-            <div className="text-gray-600">{resolution.description}</div>
+            <div className="flex flex-row gap-10">
+              <div className="text-gray-600">{resolution.description}</div>
+              <div>
+                <input type="checkbox" defaultChecked={resolution.isChecked} /> Finished
+              </div>
+            </div>
           </div>
         ))
       }
