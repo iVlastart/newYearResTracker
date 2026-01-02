@@ -9,6 +9,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.get('/resolutions', (req,res)=>{
+  console.log(data);
+  res.status(200).send({ data });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 }); 
