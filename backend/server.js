@@ -14,7 +14,7 @@ app.get('/resolutions', (req,res)=>{
 });
 
 app.post('/resolutions', (req,res)=>{
-
+  const { id, isChecked } = req.body;
 });
 
 app.listen(port, () => {

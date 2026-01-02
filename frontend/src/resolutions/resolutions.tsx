@@ -1,6 +1,11 @@
 import type { IResolution } from ".";
+import { updateResolution } from "../api/api";
 
 export const Resolutions = ({data}:IResolution)=>{
+    const handleClick = (e:React.MouseEvent<HTMLDivElement>, id: number, isChecked: boolean)=>{
+        e.preventDefault();
+        updateResolution(id, !isChecked);
+    }
     return(
         <>
             {
@@ -9,7 +14,7 @@ export const Resolutions = ({data}:IResolution)=>{
                   <div className="text-xl font-semibold">{resolution.name}</div>
                   <div className="flex flex-row gap-10">
                     <div className="text-gray-600">{resolution.description}</div>
-                    <div className="flex flex-row gap-x-1">
+                    <div className="flex flex-row gap-x-1" onClick={(e:React.MouseEvent<HTMLDivElement>)=>handleClick(e, resolution.id, resolution.isChecked)}>
                       <input type="checkbox" defaultChecked={resolution.isChecked} id={`chckIsChecked-${resolution.id}`} /> 
                       <label htmlFor={`chckIsChecked-${resolution.id}`}>Finished</label>
                     </div>
