@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import type { IResolution } from ".";
+import { loadResolutions } from "./api/api";
 
 export default function App(){
   const [data, setData] = useState<IResolution[]>([]);
-  const loadResolutions = async ()=>{
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/resolutions`);
-      setData(res.data.data.data);
-  };
   useEffect(()=>{
-    loadResolutions(); 
+    loadResolutions({setData}); 
   },[]);
   return(
     <>
@@ -22,8 +18,9 @@ export default function App(){
             <div className="text-xl font-semibold">{resolution.name}</div>
             <div className="flex flex-row gap-10">
               <div className="text-gray-600">{resolution.description}</div>
-              <div>
-                <input type="checkbox" defaultChecked={resolution.isChecked} /> Finished
+              <div className="flex flex-row gap-x-1">
+                <input type="checkbox" defaultChecked={resolution.isChecked} id={`chckIsChecked-${resolution.id}`} /> 
+                <label htmlFor={`chckIsChecked-${resolution.id}`}>Finished</label>
               </div>
             </div>
           </div>
